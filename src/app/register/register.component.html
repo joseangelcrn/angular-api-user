@@ -1,17 +1,24 @@
-<div class="contenedor">
-  <mat-form-field>
-    <input matInput placeholder="firstname"  class="form-control"  name="firstname" ngModel>
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput placeholder="lastname" class="form-control"  name="lastname" ngModel>
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput placeholder="email" class="form-control"  name="email" ngModel>
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <textarea matInput rows="4" cols="50" matInput placeholder="message" class="form-control"  name="message" ngModel></textarea>
-  </mat-form-field>
+<div class="row d-flex justify-content-center">
+  <div class="col-6">
+    <h2 class="text-center text-white mb-3">{{title}}</h2>
+    <form #registerForm="ngForm" (ngSubmit)="register()" class="shadow p-3 mb-5 bg-white rounded">
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="user.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control"  [(ngModel)]="user.email" name="email" email required >
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control"  [(ngModel)]="user.password" name="password" required>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control"  [(ngModel)]="user.repeat_password" name="repeat_password" required>
+      </div>
+      <div class="form-group">
+        <button  class="btn btn-primary"  type="submit" [disabled]="!registerForm.valid || submited">
+          Registrarse
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
