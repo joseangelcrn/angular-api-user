@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HerokuService } from "../heroku.service";
+import { CompileTemplateMetadata } from '@angular/compiler';
 
 
 @Component({
@@ -36,20 +37,21 @@ export class RegisterComponent implements OnInit {
         this.herokuService.register(this.user)
         .subscribe(
           data => {
-            console.log(data);
             this.message ='Usuario creado correctamente';
           },
           error =>{
-            console.log(error);
             this.message ='Ha ocurrido un error al registrar el usuario';
-          }
-        );
+          })
+          .add(
+            ()=>{
+              this.submited = false;
+            }
+          );
 
     }
     else{
       alert('Error: Las contraseñas no coinciden !');
     }
-    this.submited = false;
   }
 
 }
