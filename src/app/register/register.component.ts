@@ -13,10 +13,10 @@ export class RegisterComponent implements OnInit {
 
   title = 'Registro';
   user= {
-    name:'aaaa',
-    email:'aaa@gmail.com',
-    password:'aaa',
-    repeat_password:'aaa'
+    name:'',
+    email:'',
+    password:'',
+    repeat_password:''
   };
   submited = false;
   message = null;
