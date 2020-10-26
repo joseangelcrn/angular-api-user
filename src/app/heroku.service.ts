@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,12 @@ export class HerokuService {
 
   public login(user) {
     return this.http.post(this.REST_API_SERVER+this.LOGIN, user);
+  }
+
+  public  logout() {
+    let token = localStorage.getItem('token');
+    let headers  = new HttpHeaders();
+    headers.append('Authorization','Bearer '+token);
+    return this.http.get(this.REST_API_SERVER+this.LOGOUT,{headers: headers});
   }
 }
