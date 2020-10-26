@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="row d-flex justify-content-center">
+  <div class="col-6">
+    <h2 class="text-center text-white mb-3">{{title}}</h2>
+    <form #loginForm="ngForm" (ngSubmit)="login()" class="shadow p-3 mb-5 bg-white rounded">
+      <div class="form-group">
+        <input type="email" class="form-control"  [(ngModel)]="user.email" name="email" placeholder="email" email required >
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control"  [(ngModel)]="user.password" name="password" placeholder="password" required>
+      </div>
+      <div class="form-group">
+        <button  class="btn btn-primary"  type="submit" [disabled]="!loginForm.valid || submited">
+          Iniciar Sesion
+        </button>
+      </div>
+
+      <div *ngIf="message != null" class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
