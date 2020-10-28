@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HerokuService } from '../heroku.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-    private herokuService:HerokuService
+    private herokuService:HerokuService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
 
               if (token != null) {
                 localStorage.setItem('token', JSON.stringify(token));
+                this.router.navigate(['home']);
               }
             },
             error =>{
