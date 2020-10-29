@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,12 +14,21 @@ export class HomeComponent implements OnInit {
     name:'wqe',
     email:'qwe'
   }
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   loadUserInfo(){
 
+  }
+
+  logout(){
+    console.log('logout !');
+    this.authService.removeToken();
+    this.router.navigate(['login']);
   }
 }
