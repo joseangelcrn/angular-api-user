@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HerokuService } from '../heroku.service';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private herokuService:HerokuService,
+    private authService:AuthService,
     private router:Router
   ) { }
 
@@ -45,7 +47,8 @@ export class LoginComponent implements OnInit {
               console.log(token);
 
               if (token != null) {
-                localStorage.setItem('token', JSON.stringify(token));
+                // localStorage.setItem('token', JSON.stringify(token));
+                this.authService.saveToken(JSON.stringify(token));
                 this.router.navigate(['home']);
               }
             },
