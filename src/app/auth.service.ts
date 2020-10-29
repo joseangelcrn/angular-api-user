@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
 
 
 const AUTH_TOKEN_KEY = 'auth_token';
@@ -6,12 +7,14 @@ const AUTH_TOKEN_KEY = 'auth_token';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements CanActivate{
 
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   public saveToken(token){
-    localStorage.setItem(AUTH_TOKEN_KEY,token);
+    localStorage.setItem(AUTH_TOKEN_KEY,JSON.stringify(token));
   }
 
   public removeToken() {
@@ -19,7 +22,7 @@ export class AuthService {
   }
 
   public getToken() {
-    localStorage.getItem(AUTH_TOKEN_KEY);
+    return localStorage.getItem(AUTH_TOKEN_KEY);
   }
 
   public isAuth(){
@@ -29,4 +32,12 @@ export class AuthService {
     return false;
   }
 
+  public canActivate(){
+    if (this.isAuth()) {
+      return true;
+    }
+    else{
+      this.router.navigate(['login']);
+    }
+  }
 }
