@@ -41,19 +41,16 @@ export class LoginComponent implements OnInit {
             data => {
               // this.message ='Usuario creado correctamente';
               console.log('response');
-              // console.log(data);
               let token = data['access_token'];
               console.log('token');
               console.log(token);
 
               if (token != null) {
-                // localStorage.setItem('token', JSON.stringify(token));
-                this.authService.saveToken(JSON.stringify(token));
+                this.authService.saveToken(token);
                 this.router.navigate(['home']);
               }
             },
             error =>{
-              // this.message ='Ha ocurrido un error al registrar el usuario';
               console.log('error');
               console.log(error);
             })
