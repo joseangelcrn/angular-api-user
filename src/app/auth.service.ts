@@ -14,7 +14,7 @@ export class AuthService implements CanActivate{
   ) { }
 
   public saveToken(token){
-    localStorage.setItem(AUTH_TOKEN_KEY,JSON.stringify(token));
+    localStorage.setItem(AUTH_TOKEN_KEY,token);
   }
 
   public removeToken() {
