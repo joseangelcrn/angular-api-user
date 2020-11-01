@@ -2,9 +2,10 @@
   <div class="col-4">
     <h1 class="text-center text-white">{{title}}</h1>
     <div class="card" >
-      <div class="card-body">
+      <div class="card-body" *ngIf="user != null">
         <p class="card-text"><b>Nombre: </b>{{user.name}}</p>
         <p class="card-text"><b>Email: </b>{{user.email}}</p>
+        <p class="card-text"><b>Fecha creación: </b>{{user.created_at | date: 'dd/MM/yyyy'}}</p>
         <div class="text-center">
           <button class="btn btn-danger btn-sm" (click)="logout()">Cerrar sesión</button>
         </div>
