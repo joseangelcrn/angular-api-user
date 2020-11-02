@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HerokuService } from '../heroku.service';
 import { Observable } from 'rxjs';
+import { User } from "../user.model";
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   title = 'Home';
-  user = null;
+  user:User = null;
 
   constructor(
     private authService: AuthService,
@@ -23,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUserInfo();
+    console.log(this.user);
+
   }
 
   loadUserInfo() {
@@ -30,9 +33,9 @@ export class HomeComponent implements OnInit {
     this.herokuService.home().subscribe(
       (data)=>{
         console.log('Successfully loaded user info');
-        that.user = data;
-
-        // that.user.created_at = new Date(that.user.created_at).toDateString();
+        that.user = new User(data['id'],data['name'],data['email'],data['created_at']);
+        console.log('USER OBJECT');
+        console.log(that.user);
 
       },
       (error)=>{
